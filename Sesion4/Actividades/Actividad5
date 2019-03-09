@@ -1,0 +1,54 @@
+#include "DHT.h"
+#include <LiquidCrystal.h> // Incluye la Libreria LiquidCrystal
+const int rs = 8;
+const int en = 9;
+const int d4 = 6;
+const int d5 = 5;
+const int d6 = 4;
+const int d7 = 3;
+LiquidCrystal lcd(rs, en, d4,d5,d6,d7);
+DHT dht(11, DHT11);
+const int button = 12;
+int butttonState = 0;
+
+void setup() {
+  pinMode(button,INPUT);
+  lcd.begin(16,2); // Inicializa la interface para el LCD screen, and determina sus dimensiones (ancho y alto) del display
+  Serial.begin(9600);
+  Serial.println("Prueba del sensor DHT11");
+  dht.begin();
+}
+
+void loop() {
+ int  buttonState = digitalRead(button);
+
+
+
+
+  if(buttonState == HIGH){
+      // LEER LA HUMEDAD USANDO EL METRODO READHUMIDITY
+      float h = dht.readHumidity();
+      // LEER LA TEMPERATURA USANDO EL METRODO READTEMPERATURE
+      float t = dht.readTemperature();
+      // REVISAR QUE LOS RESULTADOS SEAN VALORES NUMERICOS VALIDOS, INDICANDO QUE LA COMUNICACION ES CORRECTA
+      if (isnan(h) || isnan(t)) {
+        Serial.println("Falla al leer el sensor DHT11!");
+        return;
+      }
+
+      // IMPRIMIR RESULTADO AL MONITOR SERIAL
+      lcd.setCursor(0,0);
+      lcd.print("Humedad: ");
+      lcd.print(h);
+      lcd.print(" % ");
+      lcd.setCursor(0,1);
+      lcd.print("Temp:   ");
+      lcd.print(t);
+      lcd.print(" *C");
+      delay(5000);
+      }else{
+          lcd.clear();
+  delay(1000);
+      }
+
+ }
