@@ -1,4 +1,4 @@
-#include <LiquidCrystal.h> // Incluye la Libreria LiquidCrystal
+#i#include <LiquidCrystal.h> // Incluye la Libreria LiquidCrystal
 const int rs = 8;
 const int en = 9;
 const int d4 = 6;
@@ -49,7 +49,7 @@ void loop() {
     if((segundos-(60*minutos)-(360*horas))<10){
       lcd.print(0);
     }
-    lcd.print(segundos-(60*minutos)-(360*horas));
+    lcd.print(segundos-(60*minutos));
     delay(900);
     lcd.clear();
     delay(100);
