@@ -38,22 +38,22 @@ void loop() {
   accX = sensor.getAccelerationX();
 
 //ANGULOS DE X y Y de rango 0,90
-   acXAngle=constrain(acXAngle,0,90);
-  acYAngle=constrain(acYAngle,0,90);
+   acXAngle=constrain(acXAngle,0,180);
+  acYAngle=constrain(acYAngle,0,180);
   
   if(isnan(acYAngle));
   else{
-    Serial.print(" INCLINACIÓN  Y   ");
+    Serial.print(" ANGULO  Y   ");
     
     Serial.print(int(acYAngle)); //SOBRE EJE y
 
-    Serial.print(" INCLINACIÓN  X   ");
+    Serial.print(" ANGULO  X   ");
     
     Serial.println(int(acXAngle)); //SOBRE EJE y
 
     //Utilizamos esto para Imprimir los angulos
     
   }
-  delay(10);
+  delay(100);
 }
 
